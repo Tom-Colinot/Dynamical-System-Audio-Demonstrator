@@ -109,7 +109,7 @@ while no_underrun
         for imode = 1:Nmodes
             X = Xs(2*(imode-1)+(1:2));
             for ibuf=1:Nbuf
-                X = VanDerPol5_backwardsEuler(X,mu,nu0,sigma,2*pi*f0*2^(mod(imode,72)/12),Fs);
+                X = VanDerPol5_explicitEuler(X,mu,nu0,sigma,2*pi*f0*2^(mod(imode,72)/12),Fs);
                 audioout(ibuf,:) = X/10;
             end
             Xs(2*(imode-1)+(1:2)) = X;
@@ -122,7 +122,7 @@ while no_underrun
         for imode = 1:Nmodes
             X = Xs(2*(imode-1)+(1:2));
             for ibuf=1:Nbuf
-                X = VanDerPol5_backwardsEuler(X,mu,nu0,sigma,2*pi*f0*2^(mod(imode,72)/12),Fs);
+                X = VanDerPol5_explicitEuler(X,mu,nu0,sigma,2*pi*f0*2^(mod(imode,72)/12),Fs);
                 audioout(ibuf,:) = X/10;
             end
             Xs(2*(imode-1)+(1:2)) = X;

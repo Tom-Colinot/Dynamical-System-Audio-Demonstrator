@@ -64,7 +64,7 @@ uilabel(controlfig,'Position',[margin+8*dl/6+50 margin dl/2-60 20],'Text','cents
 % Buttons
 
 integrationmethodbuttongroup = uibuttongroup(controlfig,'Position',[dxcontrol+margin/2 9*dl/4 dl-margin margin*4],'Title','Integration method','FontSize',18);
-Eulerradiobutton = uiradiobutton(integrationmethodbuttongroup,'Position',[margin/2 margin/2 dl-margin margin/2],'Text',' Backwards Euler','FontSize',18,'Value',0);
+Eulerradiobutton = uiradiobutton(integrationmethodbuttongroup,'Position',[margin/2 margin/2 dl-margin margin/2],'Text',' Explicit Euler','FontSize',18,'Value',0);
 RK4radiobutton = uiradiobutton(integrationmethodbuttongroup,'Position',[margin/2 margin/2+margin dl-margin margin/2],'Text',' Runge-Kutta','FontSize',18,'Value',1);
 ODE45radiobutton = uiradiobutton(integrationmethodbuttongroup,'Position',[margin/2 margin/2+2*margin dl-margin margin/2],'Text',' ODE45','FontSize',18,'Value',0);
 

@@ -10,7 +10,7 @@ mu = 0;         mumin = -0.5;     mumax = -mumin;
 MIDInote0 = 36; MIDInotemin = 36; MIDInotemax = 84;
 % Audio parameters
 Fs = 44100;%Hz 
-Nbuf = 512;
+Nbuf = 1024;
 try fprintf('\n Audio driver initialization. Trying VoiceMeeter ASIO. \n'); ADW = audioDeviceWriter('SampleRate',Fs,'Driver','ASIO','Device','VoiceMeeter Virtual ASIO'); ADW(zeros(Nbuf,2)); fprintf('\n Success!'); ADW,
 catch, try    fprintf('Failed VoiceMeeter ASIO... Trying WASAPI.\n');       ADW = audioDeviceWriter('Driver','WASAPI','SampleRate',Fs,'BufferSize',Nbuf); ADW(zeros(Nbuf,2)); fprintf('\n Success!'); ADW, 
        catch, fprintf('Failed WASAPI... Trying default.\n');                ADW = audioDeviceWriter('SampleRate',Fs,'BufferSize',Nbuf); ADW(zeros(Nbuf,2)); fprintf('\n Success!'); ADW, 
@@ -43,11 +43,11 @@ while ~stopbutton.Value
     else
         for ibuf = 1:Nbuf
             if 	boolLinearStiffness
-                if boolEuler,   X_np1 = VanDerPol5_backwardsEuler(X,mu,nu0,sigma,2*pi*f0,Fs);
+                if boolEuler,   X_np1 = VanDerPol5_explicitEuler(X,mu,nu0,sigma,2*pi*f0,Fs);
                 elseif boolRK4, X_np1 = VanDerPol5_RK4(X,mu,nu0,sigma,2*pi*f0,Fs);
                 end
             elseif boolCubicStiffness
-                if boolEuler,   X_np1 = VanDerPol5cubic_backwardsEuler(X,mu,nu0,sigma,2*pi*f0,Fs);
+                if boolEuler,   X_np1 = VanDerPol5cubic_explicitEuler(X,mu,nu0,sigma,2*pi*f0,Fs);
                 elseif boolRK4, X_np1 = VanDerPol5cubic_RK4(X,mu,nu0,sigma,2*pi*f0,Fs);
                 end
             end
